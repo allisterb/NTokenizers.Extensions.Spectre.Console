@@ -37,12 +37,12 @@ public class MarkdownStyles
     /// <summary>
     /// Gets or sets the style for inline code in markdown content.
     /// </summary>
-    public Style CodeInline { get; set; } = new Style(Color.Cyan);
+    public Style CodeInline { get; set; } = new Style(Color.Cyan1);
 
     /// <summary>
     /// Gets or sets the style for code blocks in markdown content.
     /// </summary>
-    public Style CodeBlock { get; set; } = new Style(Color.Magenta);
+    public Style CodeBlock { get; set; } = new Style(Color.Magenta1);
 
     /// <summary>
     /// Gets or sets the style for links in markdown content.

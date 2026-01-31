@@ -71,17 +71,17 @@ public sealed class YamlStyles
     /// <summary>
     /// Gets or sets the style for anchors.
     /// </summary>
-    public Style Anchor { get; set; } = new Style(Color.Magenta);
+    public Style Anchor { get; set; } = new Style(Color.Magenta1);
 
     /// <summary>
     /// Gets or sets the style for aliases (*alias).
     /// </summary>
-    public Style Alias { get; set; } = new Style(Color.Magenta);
+    public Style Alias { get; set; } = new Style(Color.Magenta1);
 
     /// <summary>
     /// Gets or sets the style for tags (!tag or !!type).
     /// </summary>
-    public Style Tag { get; set; } = new Style(Color.Magenta);
+    public Style Tag { get; set; } = new Style(Color.Magenta1);
 
     /// <summary>
     /// Gets or sets the style for flow sequence start markers ([).

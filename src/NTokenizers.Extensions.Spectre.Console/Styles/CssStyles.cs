@@ -32,7 +32,7 @@ public sealed class CssStyles
     /// <summary>
     /// Gets or sets the style for CSS pseudo-elements (::before, ::after).
     /// </summary>
-    public Style PseudoElement { get; set; } = new Style(Color.Magenta);
+    public Style PseudoElement { get; set; } = new Style(Color.Magenta1);
 
     /// <summary>
     /// Gets or sets the style for CSS property names.
@@ -67,12 +67,12 @@ public sealed class CssStyles
     /// <summary>
     /// Gets or sets the style for opening parentheses in CSS functions.
     /// </summary>
-    public Style OpenParen { get; set; } = new Style(Color.Cyan);
+    public Style OpenParen { get; set; } = new Style(Color.Cyan1);
 
     /// <summary>
     /// Gets or sets the style for closing parentheses in CSS functions.
     /// </summary>
-    public Style CloseParen { get; set; } = new Style(Color.Cyan);
+    public Style CloseParen { get; set; } = new Style(Color.Cyan1);
 
     /// <summary>
     /// Gets or sets the style for CSS comments.
