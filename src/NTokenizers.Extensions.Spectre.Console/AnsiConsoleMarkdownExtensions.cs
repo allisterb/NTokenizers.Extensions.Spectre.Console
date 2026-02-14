@@ -1,8 +1,9 @@
-﻿using NTokenizers.Markdown;
-using NTokenizers.Extensions.Spectre.Console.Styles;
+﻿using NTokenizers.Extensions.Spectre.Console.Styles;
 using NTokenizers.Extensions.Spectre.Console.Writers;
-using System.Text;
+using NTokenizers.Markdown;
 using Spectre.Console;
+using System.IO;
+using System.Text;
 
 namespace NTokenizers.Extensions.Spectre.Console;
 
@@ -78,6 +79,32 @@ public static class AnsiConsoleMarkdownExtensions
     {
         using var stream = new MemoryStream(Encoding.UTF8.GetBytes(value));
         var t = Task.Run(() => WriteMarkdownAsync(ansiConsole, stream, markdownStyles, Encoding.UTF8, default));
+        t.GetAwaiter().GetResult();
+    }
+
+
+    public static async Task WriteMarkdownInlineAsync(this IAnsiConsole ansiConsole, string value)
+    {
+        var writer = new MarkdownInlineWriter(ansiConsole);
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(value));
+        MarkdownTokenizer tokenizer = MarkdownTokenizer.Create();
+        await tokenizer.ParseAsync(
+                stream,                
+                writer.WriteToken
+            );
+    }
+
+    /// <summary>
+    /// Parses and writes the specified Markdown string as inline content using the provided ANSI console and optional
+    /// Markdown styles.
+    /// </summary>
+    /// <param name="ansiConsole">The ANSI console used for output.</param>
+    /// <param name="value">The Markdown string to parse and write.</param>
+    /// <param name="markdownStyles">Optional styles to apply to the Markdown content.</param>
+    /// <returns>A string containing the rendered inline Markdown.</returns>
+    public static void WriteMarkdownInline(this IAnsiConsole ansiConsole, string value)
+    {
+        var t = Task.Run(() => WriteMarkdownInlineAsync(ansiConsole, value));
         t.GetAwaiter().GetResult();
     }
 }
