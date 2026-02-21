@@ -12,6 +12,7 @@ internal class MarkdownInlineWriter(IAnsiConsole ansiConsole, MarkdownStyles? st
 {
     protected override Style GetStyle(MarkdownTokenType token) => token switch
     {
+        /*
         MarkdownTokenType.Heading => styles?.Heading ?? MarkdownStyles.Default.Heading,
         MarkdownTokenType.Bold => styles?.Bold ?? MarkdownStyles.Default.Bold,
         MarkdownTokenType.Italic => MarkdownStyles.Default.Italic,
@@ -38,6 +39,7 @@ internal class MarkdownInlineWriter(IAnsiConsole ansiConsole, MarkdownStyles? st
         MarkdownTokenType.InsertedText => MarkdownStyles.Default.InsertedText,
         MarkdownTokenType.MarkedText => MarkdownStyles.Default.MarkedText,
         MarkdownTokenType.Emoji => MarkdownStyles.Default.Emoji,
+        */
         _ => MarkdownStyles.Default.DefaultStyle
     };
 

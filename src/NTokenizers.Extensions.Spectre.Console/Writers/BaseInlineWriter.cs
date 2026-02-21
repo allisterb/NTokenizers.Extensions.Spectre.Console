@@ -2,6 +2,7 @@
 using Spectre.Console;
 using Spectre.Console.Rendering;
 using System.Diagnostics;
+using System.Text;
 
 namespace NTokenizers.Extensions.Spectre.Console.Writers;
 
@@ -81,5 +82,23 @@ internal abstract class BaseInlineWriter<TToken, TTokentype>(IAnsiConsole ansiCo
                 liveParagraph.Append(token.Value, GetStyle(token.TokenType));
             }
         }
+    }
+
+    public void Parse(BaseSubTokenizer<TToken> tokenizer, string value)
+    {
+        Task.Run(async () =>
+        {
+            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(value));
+            await tokenizer.ParseAsync(stream, this.WriteToken);
+        }).GetAwaiter().GetResult();
+    }
+
+    public void Parse(BaseTokenizer<TToken> tokenizer, string value)
+    {
+        Task.Run(async () =>
+        {
+            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(value));
+            await tokenizer.ParseAsync(stream, this.WriteToken);
+        }).GetAwaiter().GetResult();
     }
 }

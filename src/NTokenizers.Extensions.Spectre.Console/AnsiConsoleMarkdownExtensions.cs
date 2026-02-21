@@ -21,28 +21,53 @@ public static class AnsiConsoleMarkdownExtensions
     /// <param name="encoding">The character encoding to use. If null, encoding will be detected from the stream's byte order mark (BOM).</param>
     /// <param name="ct">A cancellation token to observe while waiting for the task to complete.</param>
     /// <returns>A task that represents the asynchronous write operation and contains the parsed string.</returns>
-    public static async Task<string> WriteMarkdownAsync(this IAnsiConsole ansiConsole, Stream stream, MarkdownStyles? markdownStyles = null, Encoding? encoding = null, CancellationToken ct = default)
+    public static async Task<string> WriteMarkdownAsync(this IAnsiConsole ansiConsole, Stream stream, MarkdownStyles? markdownStyles = null, Encoding? encoding = null, CancellationToken ct = default, bool inline = false)
     {
         var markdownWriter = MarkdownWriter.Create(ansiConsole);
+        var markdownInlineWriter = MarkdownInlineWriter.Create(ansiConsole);
         markdownWriter.MarkdownStyles = markdownStyles ?? MarkdownStyles.Default;
         if (encoding is null)
         {
             // Call overload without encoding to preserve BOM detection
-            return await MarkdownTokenizer.Create().ParseAsync(
-                stream,
-                ct,
-                async token => await markdownWriter.WriteAsync(token)
-            );
+            if (!inline)
+            {
+                return await MarkdownTokenizer.Create().ParseAsync(
+                    stream,
+                    ct,
+                    async token => await markdownWriter.WriteAsync(token)
+                );
+            }
+            else
+            {
+                return await MarkdownTokenizer.Create().ParseAsync(
+                    stream,
+                    ct,
+                    token => markdownInlineWriter.WriteToken(token)
+                );
+            }
         }
         else
         {
+
             // Call overload with encoding and cancellation token
-            return await MarkdownTokenizer.Create().ParseAsync(
-                stream,
-                encoding,
-                ct,
-                async token => await markdownWriter.WriteAsync(token)
-            );
+            if (!inline)
+            {
+                return await MarkdownTokenizer.Create().ParseAsync(
+                    stream,
+                    encoding,
+                    ct,
+                    async token => await markdownWriter.WriteAsync(token)
+                );
+            }
+            else
+            {
+                return await MarkdownTokenizer.Create().ParseAsync(
+                    stream,
+                    encoding,
+                    ct,
+                    token => markdownInlineWriter.WriteToken(token)
+                );
+            }
         }
     }
 
