@@ -405,7 +405,7 @@ The `docs/assets/animated-demo.svg` file is generated using [console2svg](https:
 To regenerate after updating the Markdown showcase:
 
 ```bash
-console2svg -v -d macos -w 80 -h 20 --fps 6 -o docs/assets/animated-demo.svg -- "dotnet tests/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown/bin/Debug/net10.0/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown.dll"
+console2svg -v -d macos -w 80 -h 10 --fps 6 -o docs/assets/animated-demo.svg -- "dotnet tests/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown/bin/Debug/net10.0/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown.dll"
 ```
 
 Options used:
