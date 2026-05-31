@@ -58,3 +58,4 @@ var help = """"
            """";
 
 AnsiConsole.Console.WriteMarkdown(help);
+```
