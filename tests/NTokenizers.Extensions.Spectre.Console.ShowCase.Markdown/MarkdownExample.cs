@@ -372,11 +372,7 @@ internal static class MarkdownExample
         [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
         ### Emojies
-        > Classic markup: :wink: :ok_hand: :cry: :avocado: :laughing: :yum:
-        >
-        > Shortcuts (emoticons): :-) :-( 8-) ;)
-
-        see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
+        Classic markup: :1st_place_medal: :winking_face: :ok_hand: :crying_cat: :avocado: :rolling_on_the_floor_laughing: :alien:
 
         ### Sub and Sup script
         - 19^th^
