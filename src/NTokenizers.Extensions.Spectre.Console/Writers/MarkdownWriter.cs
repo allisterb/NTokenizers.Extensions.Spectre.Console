@@ -139,7 +139,7 @@ internal class MarkdownWriter(IAnsiConsole ansiConsole)
         }
         else if (token.Metadata is LinkMetadata linkMeta)
         {
-            var writer = new MarkdownLinkWriter(ansiConsole);
+            var writer = new MarkdownLinkWriter(ansiConsole, MarkdownStyles.Link);
             writer.Write(linkMeta);
         }
         else if (token.Metadata is BlockquoteMetadata blockquoteMeta)

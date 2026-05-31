@@ -340,12 +340,9 @@ internal static class MarkdownExample
 
 
         ## Links
-
         [link text](http://dev.nodeca.com)
-
         [link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-        Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+        [](http://financeplannerapp.com)
 
         ## Typographic replacements
         Enable typographer option to see result.
@@ -359,7 +356,6 @@ internal static class MarkdownExample
         "Smartypants, double quotes" and 'single quotes'
 
         ## Images
-
         ![Minion](https://octodex.github.com/images/minion.png)
         ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
@@ -371,40 +367,34 @@ internal static class MarkdownExample
 
         [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
-
         ## Plugins
-
         The killer feature of `markdown-it` is very effective support of
         [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
-
-        ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
+        ### Emojies
         > Classic markup: :wink: :ok_hand: :cry: :avocado: :laughing: :yum:
         >
         > Shortcuts (emoticons): :-) :-( 8-) ;)
 
         see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 
-
-        ### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
+        ### Sub and Sup script
         - 19^th^
         - H~2~O
 
+        [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
 
-        ### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
+        ### ins
         ++Inserted text++
 
+        [\<ins>](https://github.com/markdown-it/markdown-it-ins)
 
-        ### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
+        ### mark
         ==Marked text==
 
+        [\<mark>](https://github.com/markdown-it/markdown-it-mark)
 
-        ### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
+        ### Footnotes
         Footnote 1 link[^first].
 
         Footnote 2 link[^second].
@@ -419,8 +409,9 @@ internal static class MarkdownExample
 
         [^second]: Footnote text.
 
+        [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
-        ### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
+        ### Definition lists
 
         Term 1
 
@@ -444,8 +435,9 @@ internal static class MarkdownExample
         ~ Definition 2a
         ~ Definition 2b
 
+        [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
 
-        ### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+        ### Abbreviations
 
         This is HTML abbreviation example.
 
@@ -453,11 +445,15 @@ internal static class MarkdownExample
 
         *[HTML]: Hyper Text Markup Language
 
-        ### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+        [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+
+        ### Custom containers
 
         ::: warning
         *here be dragons*
         :::
         
+        [Custom containers](https://github.com/markdown-it/markdown-it-container)
+
         """";
 }
