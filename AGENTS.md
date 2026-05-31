@@ -398,6 +398,24 @@ After adding a language, complete these steps:
 
 ---
 
+## Generating Animated SVG for Documentation
+
+The `docs/assets/animated-demo.svg` file is generated using [console2svg](https://github.com/arika0093/console2svg) (installed as a .NET global tool: `dotnet tool install -g ConsoleToSvg`).
+
+To regenerate after updating the Markdown showcase:
+
+```bash
+console2svg -v -d macos -w 80 -h 20 --fps 6 -o docs/assets/animated-demo.svg -- "dotnet tests/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown/bin/Debug/net10.0/NTokenizers.Extensions.Spectre.Console.ShowCase.Markdown.dll"
+```
+
+Options used:
+- `-v` — video mode (animated SVG)
+- `-d macos` — macOS window chrome style
+- `-w 80 -h 20` — terminal dimensions in characters
+- `--fps 6` — frames per second (lower = smaller file)
+
+---
+
 ## Expected File Structure After Implementation
 
 ```
