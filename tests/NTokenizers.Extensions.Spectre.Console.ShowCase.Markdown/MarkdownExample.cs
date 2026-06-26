@@ -200,6 +200,12 @@ internal static class MarkdownExample
         employee: { name: "Bob", position: "Developer" }
         ```
 
+        ```toml
+        title = "My App"
+        active = true
+        count = [42, 43, 44]
+        ```
+
         ```html
         <!DOCTYPE html>
         <html>
@@ -240,10 +246,80 @@ internal static class MarkdownExample
 
         -- Insert sample data into the Employees table
         INSERT INTO Employees (EmployeeID, FirstName, LastName, Position, Department, Salary)
-        VALUES 
+        VALUES
         (1, 'Alice', 'Smith', 'Software Engineer', 'IT', 75000.00),
         (2, 'Bob', 'Johnson', 'Data Scientist', 'Analytics', 82000.50),
         (3, 'Charlie', 'Williams', 'Product Manager', 'Marketing', 91000.25);
+        ```
+
+        ```c
+        #include <stdio.h>
+
+        // Hello World in C
+        int main() {
+            printf("Hello, World!\n");
+            return 0;
+        }
+        ```
+
+        ```cpp
+        #include <iostream>
+
+        // Hello World in C++
+        int main() {
+            std::cout << "Hello, World!" << std::endl;
+            return 0;
+        }
+        ```
+
+        ```go
+        package main
+
+        import "fmt"
+
+        // Hello World in Go
+        func main() {
+            fmt.Println("Hello, World!")
+        }
+        ```
+
+        ```java
+        // Hello World in Java
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+        ```
+
+        ```kotlin
+        // Hello World in Kotlin
+        fun main() {
+            println("Hello, World!")
+        }
+        ```
+
+        ```python
+        # Hello World in Python
+        def main():
+            print("Hello, World!")
+
+        if __name__ == "__main__":
+            main()
+        ```
+
+        ```rust
+        // Hello World in Rust
+        fn main() {
+            println!("Hello, World!");
+        }
+        ```
+
+        ```swift
+        // Hello World in Swift
+        import Foundation
+
+        print("Hello, World!")
         ```
 
         ## Tables
@@ -264,12 +340,9 @@ internal static class MarkdownExample
 
 
         ## Links
-
         [link text](http://dev.nodeca.com)
-
         [link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-        Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+        [](http://financeplannerapp.com)
 
         ## Typographic replacements
         Enable typographer option to see result.
@@ -283,7 +356,6 @@ internal static class MarkdownExample
         "Smartypants, double quotes" and 'single quotes'
 
         ## Images
-
         ![Minion](https://octodex.github.com/images/minion.png)
         ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
@@ -295,40 +367,30 @@ internal static class MarkdownExample
 
         [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
-
         ## Plugins
-
         The killer feature of `markdown-it` is very effective support of
         [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
+        ### Emojies
+        Classic markup: :1st_place_medal: :winking_face: :ok_hand: :crying_cat: :avocado: :rolling_on_the_floor_laughing: :alien:
 
-        ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-        > Classic markup: :wink: :ok_hand: :cry: :avocado: :laughing: :yum:
-        >
-        > Shortcuts (emoticons): :-) :-( 8-) ;)
-
-        see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-        ### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
+        ### Sub and Sup script
         - 19^th^
         - H~2~O
 
+        [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
 
-        ### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
+        ### ins
         ++Inserted text++
 
+        [\<ins>](https://github.com/markdown-it/markdown-it-ins)
 
-        ### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
+        ### mark
         ==Marked text==
 
+        [\<mark>](https://github.com/markdown-it/markdown-it-mark)
 
-        ### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
+        ### Footnotes
         Footnote 1 link[^first].
 
         Footnote 2 link[^second].
@@ -343,8 +405,9 @@ internal static class MarkdownExample
 
         [^second]: Footnote text.
 
+        [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
-        ### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
+        ### Definition lists
 
         Term 1
 
@@ -368,8 +431,9 @@ internal static class MarkdownExample
         ~ Definition 2a
         ~ Definition 2b
 
+        [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
 
-        ### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+        ### Abbreviations
 
         This is HTML abbreviation example.
 
@@ -377,11 +441,15 @@ internal static class MarkdownExample
 
         *[HTML]: Hyper Text Markup Language
 
-        ### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+        [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+
+        ### Custom containers
 
         ::: warning
         *here be dragons*
         :::
         
+        [Custom containers](https://github.com/markdown-it/markdown-it-container)
+
         """";
 }

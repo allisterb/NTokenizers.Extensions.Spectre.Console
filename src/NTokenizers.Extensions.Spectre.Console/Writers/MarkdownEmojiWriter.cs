@@ -7,6 +7,6 @@ internal class MarkdownEmojiWriter(IAnsiConsole ansiConsole)
 {
     internal void Write(EmojiMetadata emojiMeta)
     {
-        ansiConsole.Write(emojiMeta.Name);
+        ansiConsole.Markup($"[yellow]:{emojiMeta.Name}:[/]");
     }
 }

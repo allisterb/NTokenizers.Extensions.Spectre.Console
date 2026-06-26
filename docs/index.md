@@ -5,9 +5,11 @@ title: "Home"
 
 # NTokenizers.Extensions.Spectre.Console
 
-The **NTokenizers.Extensions.Spectre.Console** library provides advanced syntax highlighting using Spectre.Console for XML, JSON, Markdown, TypeScript, JavaScript, CSS, HTML, C#, and SQL.
+The **NTokenizers.Extensions.Spectre.Console** library provides advanced syntax highlighting using Spectre.Console for XML, JSON, Markdown, TypeScript, JavaScript, CSS, HTML, C#, SQL, TOML, C, C++, Go, Java, Kotlin, Python, Rust, and Swift.
 
-![Example](assets/example.png)
+## Showcase
+
+![Animated Demo](assets/animated-demo.svg)
 
 This library builds on:
 - **[Spectre.Console](https://spectreconsole.net/)** for advanced console rendering
@@ -27,15 +29,11 @@ await AnsiConsole.Console.WriteMarkdownAsync(stream);
 
 ## Token visualization demo
 
-<iframe width="1112" height="590" src="https://www.youtube.com/embed/o4LR8MxP3rg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-Link: [Youtube](https://www.youtube.com/watch?v=o4LR8MxP3rg)
+[Watch on YouTube](https://www.youtube.com/watch?v=o4LR8MxP3rg)
 
 ## Ai demo
 
-<iframe width="1112" height="590" src="https://www.youtube.com/embed/NleKdlooc_0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-Link: [Youtube](https://youtu.be/NleKdlooc_0)
+[Watch on YouTube](https://www.youtube.com/watch?v=NleKdlooc_0)
 
 ## String output
 
@@ -58,3 +56,4 @@ var help = """"
            """";
 
 AnsiConsole.Console.WriteMarkdown(help);
+```
