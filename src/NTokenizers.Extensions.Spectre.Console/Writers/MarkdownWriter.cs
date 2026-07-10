@@ -236,7 +236,10 @@ internal class MarkdownWriter(IAnsiConsole ansiConsole)
 
         if (token.TokenType == MarkdownTokenType.HorizontalRule)
         {
-            var value = new string('─', System.Console.WindowWidth);
+            // Span the console's own width (from its Profile), not System.Console.WindowWidth — the latter throws when
+            // there is no attached terminal (headless / redirected output) and is simply wrong for a buffered console
+            // (it would use the real window width instead of this console's width).
+            var value = new string('─', Math.Max(1, ansiConsole.Profile.Width));
             Write(liveTarget, value, style);
         }
         else
