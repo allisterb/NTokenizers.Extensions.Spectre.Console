@@ -41,20 +41,18 @@ internal abstract class BaseInlineWriter<TToken, TTokentype> where TToken : ITok
 
     internal async Task WriteAsync(InlineMetadata<TToken> metadata)
     {
-        var liveDisplay = new LiveDisplay(_ansiConsole, GetIRendable());
-        await liveDisplay
-        .StartAsync(async ctx =>
+        // Accumulate the streamed tokens into the paragraph, then write the built renderable once. The upstream
+        // implementation drove this with a LiveDisplay and a per-token ctx.Refresh(), which corrupts output when the
+        // target is a static offscreen ConsoleBuffer (Jumbee's AnsiConsoleBuffer): a LiveDisplay redraws each frame
+        // assuming an interactive terminal it can cursor-up/erase, so every refresh overlays a differently-sized,
+        // never-erased frame and the (top) border cells accumulate into garbage. A one-shot write renders cleanly.
+        await StartedAsync(metadata);
+        await metadata.RegisterInlineTokenHandler(async inlineToken =>
         {
-            await StartedAsync(metadata);
-            await metadata.RegisterInlineTokenHandler(async inlineToken =>
-            {
-                await WriteTokenAsync(_liveParagraph, inlineToken, ctx);
-                ctx.Refresh();
-            });
-
-            await FinalizeAsync(metadata);
-            ctx.Refresh();
+            await WriteTokenAsync(_liveParagraph, inlineToken, null);
         });
+        await FinalizeAsync(metadata);
+        _ansiConsole.Write(GetIRendable());
     }
 
     protected virtual IRenderable GetIRendable() => 

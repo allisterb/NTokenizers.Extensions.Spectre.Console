@@ -17,53 +17,52 @@ internal class MarkdownTableWriter(IAnsiConsole ansiConsole, MarkdownStyles mark
         TableRow? currentRow = null;
         var cellParagraphs = new List<Paragraph>();
         var liveParagraph = new Paragraph();
-        await ansiConsole.Live(spectreTable)
-        .StartAsync(async ctx =>
+
+        // Build the table from the streamed tokens, then write it once. The upstream implementation wrapped this in
+        // ansiConsole.Live(spectreTable) with a per-token ctx.Refresh(); against a static offscreen ConsoleBuffer
+        // (Jumbee's AnsiConsoleBuffer) each refresh overlays a differently-sized frame the buffer can't erase, which
+        // corrupts the top border (accumulated partial-width corners/junctions). One final write renders cleanly.
+        await metadata.RegisterInlineTokenHandler(async inlineToken =>
         {
-            await metadata.RegisterInlineTokenHandler(async inlineToken =>
+            if (inlineToken.TokenType == MarkdownTokenType.TableAlignments)
             {
-                if (inlineToken.TokenType == MarkdownTokenType.TableAlignments)
-                {
-                    HandleAlignments(spectreTable, metadata);
-                }
-                else if (inlineToken.TokenType == MarkdownTokenType.TableRow)
-                {
-                    //Handle new row
-                    column = -1;
+                HandleAlignments(spectreTable, metadata);
+            }
+            else if (inlineToken.TokenType == MarkdownTokenType.TableRow)
+            {
+                //Handle new row
+                column = -1;
 
-                    if (spectreTable.Columns.Count > 0)
-                    { 
-                        cellParagraphs = Enumerable.Range(0, spectreTable.Columns.Count).Select(_ => new Paragraph()).ToList();
-                        currentRow = new TableRow(cellParagraphs);
-                        spectreTable.AddRow(currentRow);
-                    }
-                }
-                else if (inlineToken.TokenType == MarkdownTokenType.TableCell)
+                if (spectreTable.Columns.Count > 0)
                 {
-                    column++;
-                    if (spectreTable.Rows.Count == 0)
+                    cellParagraphs = Enumerable.Range(0, spectreTable.Columns.Count).Select(_ => new Paragraph()).ToList();
+                    currentRow = new TableRow(cellParagraphs);
+                    spectreTable.AddRow(currentRow);
+                }
+            }
+            else if (inlineToken.TokenType == MarkdownTokenType.TableCell)
+            {
+                column++;
+                if (spectreTable.Rows.Count == 0)
+                {
+                    liveParagraph = new Paragraph();
+                    spectreTable.AddColumn(new TableColumn(liveParagraph));
+                }
+                else
+                {
+                    if (column < cellParagraphs.Count)
                     {
-                        liveParagraph = new Paragraph();
-                        spectreTable.AddColumn(new TableColumn(liveParagraph));
-                    }
-                    else
-                    {
-                        if (column < cellParagraphs.Count)
-                        {
-                            liveParagraph = cellParagraphs[column];
-                        }
+                        liveParagraph = cellParagraphs[column];
                     }
                 }
-                else //Write cell content
-                {
-                    await WriteTokenAsync(liveParagraph, inlineToken);
-                }
-
-                ctx.Refresh();
-            });
-
-            ctx.Refresh();
+            }
+            else //Write cell content
+            {
+                await WriteTokenAsync(liveParagraph, inlineToken);
+            }
         });
+
+        ansiConsole.Write(spectreTable);
     }
 
     private void HandleAlignments(Table spectreTable, TableMetadata metadata)
