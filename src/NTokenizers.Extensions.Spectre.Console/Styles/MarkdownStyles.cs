@@ -10,9 +10,17 @@ namespace NTokenizers.Extensions.Spectre.Console.Styles;
 public class MarkdownStyles
 {
     /// <summary>
-    /// Gets the default instance of <see cref="MarkdownStyles"/>.
+    /// Gets the shared default instance of <see cref="MarkdownStyles"/>.
     /// </summary>
-    public static MarkdownStyles Default => new();
+    /// <remarks>
+    /// [Jumbee perf modification] This is ONE cached instance, not a fresh copy per access. The original
+    /// <c>=&gt; new()</c> rebuilt the whole style graph (~30 <see cref="Style"/>s plus ~24 nested per-language
+    /// style trees) on every read — and the markdown writer reads <c>MarkdownStyles.Default.X</c> once *per token*,
+    /// so it dominated render-time allocations. Because the style properties are settable, callers MUST treat this
+    /// instance as read-only: mutating it changes the default for the entire process. To customise, construct a
+    /// <c>new MarkdownStyles()</c> and set properties on that copy instead.
+    /// </remarks>
+    public static MarkdownStyles Default { get; } = new();
 
     /// <summary>
     /// Gets or sets the style for headings in markdown content.
